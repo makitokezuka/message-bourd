@@ -1,3 +1,18 @@
+<% if @message.errors.present? %>
+    <div class="alert alert-danger">
+        <%= alert %>
+            <ul>
+                <% @message.errors.full_messages.each do |full_message| %>
+                <li>
+                    <%= full_message %>
+                </li>
+                <% end %>
+            </ul>
+    </div>
+<% end %>
+    
+
+
 <div class ="panel panel-default">
     <div class="panel-heading">
         <h4>メッセージ一覧</h4>
@@ -28,6 +43,7 @@
 </div>
 
 <%= form_for(@message, html:{class:"form-horizontal"}) do |f| %>
+
     <div class ="form-group">
         <label class="col-sm-2 control-label">Name：</label>
         <div class="col-sm-6">
@@ -37,8 +53,8 @@
     <div class ="form-group">
         <label class="col-sm-2 control-label">Message：</label>
         <div class="col-sm-10">
-            <%= f.text_area:body, class:"form-control", rows:"8",placeholder:"ここにメッセージを記載してください"%>
-            <p class="help-block">※1200文字以内でお願いします</p>
+            <%= f.text_area:body, class:"form-control", rows:"8",placeholder:"ここにメッセージを記載してください" %>
+            <p class="help-block">※30文字以内でお願いします</p>
         </div>
     </div>
     <div class="form-group">
@@ -46,4 +62,7 @@
             <%= f.submit class:"btn btn-sm btn-primary"%>
         </div>
     </div>
+    
+
+
 <% end%>
