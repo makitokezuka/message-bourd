@@ -9,8 +9,8 @@
             <thead>
              <tr>
                 <th class="col-sm-2">Name</th>
-                <th class="col-sm-9">Message</th>
-                <th class="col-sm-1">edit</th>
+                <th class="col-sm-8">Message</th>
+                <th class="col-sm-2">edit</th>
              </tr>
             </thead>
             <tbody>
@@ -24,6 +24,7 @@
                 </td>
                 <td>
                     <%= link_to "edit", edit_message_path(message) ,class:"btn btn-sm btn-warning" %>
+                    <%= link_to "delete", message , method: :delete, data: {confirm: '削除してよろしいですか？'} ,class:"btn btn-sm btn-danger" %>
                 </td>
              </tr>
             <% end %>
