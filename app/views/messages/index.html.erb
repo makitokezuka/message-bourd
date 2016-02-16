@@ -1,18 +1,5 @@
-<% if @message.errors.present? %>
-    <div class="alert alert-danger">
-        <%= alert %>
-            <ul>
-                <% @message.errors.full_messages.each do |full_message| %>
-                <li>
-                    <%= full_message %>
-                </li>
-                <% end %>
-            </ul>
-    </div>
-<% end %>
-    
 
-
+<% #一覧の表示%>
 <div class ="panel panel-default">
     <div class="panel-heading">
         <h4>メッセージ一覧</h4>
@@ -22,7 +9,8 @@
             <thead>
              <tr>
                 <th class="col-sm-2">Name</th>
-                <th class="col-sm-8">Message</th>
+                <th class="col-sm-9">Message</th>
+                <th class="col-sm-1">edit</th>
              </tr>
             </thead>
             <tbody>
@@ -34,6 +22,9 @@
                 <td>
                     <%= message.body %>
                 </td>
+                <td>
+                    <%= link_to "edit", edit_message_path(message) ,class:"btn btn-sm btn-warning" %>
+                </td>
              </tr>
             <% end %>
             </tbody>
@@ -42,27 +33,5 @@
     </div>
 </div>
 
-<%= form_for(@message, html:{class:"form-horizontal"}) do |f| %>
-
-    <div class ="form-group">
-        <label class="col-sm-2 control-label">Name：</label>
-        <div class="col-sm-6">
-            <%= f.text_field:name, class:"form-control",placeholder:"名前"%>
-        </div>
-    </div>
-    <div class ="form-group">
-        <label class="col-sm-2 control-label">Message：</label>
-        <div class="col-sm-10">
-            <%= f.text_area:body, class:"form-control", rows:"8",placeholder:"ここにメッセージを記載してください" %>
-            <p class="help-block">※30文字以内でお願いします</p>
-        </div>
-    </div>
-    <div class="form-group">
-        <div class="col-sm-4 col-sm-offset-2">
-            <%= f.submit class:"btn btn-sm btn-primary"%>
-        </div>
-    </div>
-    
-
-
-<% end%>
+<% #部分テンプレートを読み込んでいる%>
+<%= render 'form' %>
